@@ -2,7 +2,7 @@ export default function Hero() {
   return (
     <section className="hero-section">
       <div className="hero-content">
-        <h1>Hi, I'm [Your Name].</h1>
+        <h1>Hi, I'm SHASHWATH B.</h1>
         <h2>Full-Stack Developer specializing in React.js & Node.js.</h2>
         <p>
           I am a third-year Computer Science Engineering student with a passion 
