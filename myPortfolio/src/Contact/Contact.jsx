@@ -1,41 +1,16 @@
+
+
 export default function Contact() {
   return (
-    <section className="contact-section" id="contact">
-      <h2>Get In Touch</h2>
-      <p>
-        I'm currently looking for internship opportunities. Whether you have a 
-        question or just want to say hi, I'll try my best to get back to you!
+    <section id="contact" className="py-32 mb-20 text-center max-w-2xl mx-auto">
+      <h2 className="text-3xl md:text-5xl font-bold mb-4 reveal">Get In Touch</h2>
+      <div className="w-20 h-1 bg-cyan-500 mx-auto mb-8 reveal"></div>
+      <p className="text-gray-400 mb-10 text-lg reveal delay-100">
+        I'm currently looking for internship opportunities. Whether you have a question, a project idea, or just want to say hi, my inbox is always open.
       </p>
-
-      <div className="contact-wrapper">
-        {/* The Contact Form */}
-        <form className="contact-form" action="YOUR_FORMSPREE_ENDPOINT_HERE" method="POST">
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" required />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-          
-          <button type="submit" className="btn-primary">Send Message</button>
-        </form>
-
-        {/* Social Links */}
-        <div className="social-links">
-          <h3>Let's Connect</h3>
-          <a href="mailto:your.email@example.com">Email Me</a>
-          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub</a>
-        </div>
-      </div>
+      <a href="mailto:hello@example.com" className="reveal delay-200 inline-block px-10 py-4 bg-transparent text-cyan-500 font-bold rounded-lg border-2 border-cyan-500 hover:bg-cyan-500/10 transition-all transform hover:-translate-y-1">
+        Say Hello
+      </a>
     </section>
   );
 }

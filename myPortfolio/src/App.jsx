@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import Hero from './Hero/Hero'
 import Projects from './Projects/Projects'
 import Skills from './Skills/Skills'
@@ -5,15 +6,129 @@ import Contact from './Contact/Contact'
 import './App.css'
 
 function App() {
+const dotRef = useRef(null);
+  const outlineRef = useRef(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Hook 1: Custom Cursor Logic
+  useEffect(() => {
+    const dot = dotRef.current;
+    const outline = outlineRef.current;
+
+    if (window.matchMedia("(any-hover: hover)").matches) {
+      const moveCursor = (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        dot.style.left = `${posX}px`;
+        dot.style.top = `${posY}px`;
+
+        outline.animate({
+          left: `${posX}px`,
+          top: `${posY}px`
+        }, { duration: 500, fill: "forwards" });
+      };
+
+      window.addEventListener('mousemove', moveCursor);
+
+      const interactables = document.querySelectorAll('a, button');
+      interactables.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          outline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+          outline.style.backgroundColor = 'rgba(6, 182, 212, 0.1)';
+        });
+        el.addEventListener('mouseleave', () => {
+          outline.style.transform = 'translate(-50%, -50%) scale(1)';
+          outline.style.backgroundColor = 'transparent';
+        });
+      });
+
+      return () => {
+        window.removeEventListener('mousemove', moveCursor);
+      };
+    }
+  }, []);
+
+  // Hook 2: Scroll Animations & Navbar Scroll State
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "-50px" });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <>
-      <Hero></Hero>
-      <Projects></Projects>
-      <Skills></Skills>
-      <Contact></Contact>
-    </>
-  )
+    <div className="bg-[#0a0a0a] text-slate-50 min-h-screen font-sans selection:bg-cyan-500/30 overflow-x-hidden">
+      
+      {/* 
+        =============================================
+        6. CSS INSTRUCTIONS
+        Because you are using Tailwind, you do NOT need 
+        Hero.css, Projects.css, Skills.css, or Contact.css!
+        Tailwind handles all of that inline. 
+        
+        Copy the CSS below into your main `index.css` or `App.css` file 
+        to power the custom scrollbars and animations.
+        ============================================= 
+      */}
+    
+      {/* Custom Cursors */}
+      <div ref={dotRef} className="cursor-dot fixed top-0 left-0 w-2 h-2 bg-cyan-500 rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2"></div>
+      <div ref={outlineRef} className="cursor-outline fixed top-0 left-0 w-10 h-10 border-2 border-cyan-500/50 rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-colors duration-200"></div>
+
+      {/* Background Blobs */}
+      <div className="blob-cont">
+        <div className="blob blob-1"></div>
+        <div className="blob blob-2"></div>
+      </div>
+
+      {/* Navigation Bar */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#141414]/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
+        <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+          <a href="#" className="text-xl font-bold tracking-tighter">Dev<span className="text-cyan-500">.</span></a>
+          <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+            <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
+            <a href="#skills" className="hover:text-cyan-400 transition-colors">Skills</a>
+            <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
+          </div>
+          <a href="#contact" className="hidden md:block px-5 py-2 border border-cyan-500 text-cyan-500 rounded-full hover:bg-cyan-500 hover:text-[#0a0a0a] transition-all text-sm font-semibold">
+            Hire Me
+          </a>
+        </div>
+      </nav>
+
+      {/* 
+        =============================================
+        RENDER THE MODULAR COMPONENTS HERE
+        ============================================= 
+      */}
+      <main className="max-w-6xl mx-auto px-6">
+        <Hero />
+        <Projects />
+        <Skills />
+        <Contact />
+      </main>
+
+      <footer className="text-center py-6 border-t border-gray-800 text-sm text-gray-500">
+        <p>Built with React & Tailwind CSS. Designed for performance.</p>
+      </footer>
+    </div>
+  );
 }
 
 export default App
