@@ -22,6 +22,7 @@
         /* Animated Background Blobs */
         .blob-cont { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; pointer-events: none; }
         .blob { position: absolute; filter: blur(90px); opacity: 0.4; animation: move 20s infinite alternate; }
-        .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: rgba(6, 182, 212, 0.3); }
-        .blob-2 { bottom: -20%; right: -10%; width: 600px; height: 600px; background: rgba(59, 130, 246, 0.2); animation-delay: -5s; }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(147, 51, 234, 0.3); } /* Purple */
+.blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: rgba(59, 130, 246, 0.3); animation-delay: -5s; } /* Blue */
+.blob-3 { top: 30%; left: 40%; width: 45vw; height: 45vw; background: rgba(16, 185, 129, 0.2); animation-delay: -10s; } /* Emerald */
         @keyframes move { from { transform: translate(0, 0) scale(1); } to { transform: translate(100px, 50px) scale(1.2); } }
