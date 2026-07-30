@@ -111,15 +111,20 @@ const dotRef = useRef(null);
       {/* Navigation Bar */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#141414]/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
         <div className="max-w-[1400px] mx-auto w-[92%] flex justify-between items-center">
-          <a href="#" className="text-xl font-bold tracking-tighter">Dev<span className="text-cyan-500">.</span></a>
-          <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+          <a href="#" className="text-3xl font-bold tracking-tighter">Dev<span className="text-cyan-500">.</span></a>
+
+          {/* Navigation Links - Increased from text-sm to text-base (or text-lg on large screens) */}
+          <div className="hidden md:flex space-x-12 text-base lg:text-lg font-medium text-gray-300">
             <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
             <a href="#skills" className="hover:text-cyan-400 transition-colors">Skills</a>
             <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
           </div>
-          <a href="#contact" className="hidden md:block px-5 py-2 border border-cyan-500 text-cyan-500 rounded-full hover:bg-cyan-500 hover:text-[#0a0a0a] transition-all text-sm font-semibold">
+            
+          {/* Hire Me Button - Increased padding (px-8 py-3) and text size (text-base) */}
+          <a href="#contact" className="hidden md:block px-8 py-3 border border-cyan-500 text-cyan-400 rounded-full hover:bg-cyan-500 hover:text-[#050505] transition-all text-base font-bold">
             Hire Me
           </a>
+
         </div>
       </nav>
 
