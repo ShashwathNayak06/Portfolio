@@ -137,7 +137,7 @@ const dotRef = useRef(null);
       </main>
 
       <footer className="text-center py-6 border-t border-gray-800 text-sm text-gray-500">
-        <p>Built with React & Tailwind CSS. Designed for performance.</p>
+        <p>Built with React & Tailwind. © {new Date().getFullYear()} Shashwath Nayak.</p>
       </footer>
     </div>
   );

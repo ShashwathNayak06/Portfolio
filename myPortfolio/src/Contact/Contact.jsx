@@ -8,7 +8,7 @@ export default function Contact() {
       <p className="text-gray-400 mb-10 text-lg reveal delay-100">
         I'm currently looking for internship opportunities. Whether you have a question, a project idea, or just want to say hi, my inbox is always open.
       </p>
-      <a href="mailto:hello@example.com" className="reveal delay-200 inline-block px-10 py-4 bg-transparent text-cyan-500 font-bold rounded-lg border-2 border-cyan-500 hover:bg-cyan-500/10 transition-all transform hover:-translate-y-1">
+      <a href="mailto:shashwathnayak658@gmail.com" className="reveal delay-200 inline-block px-10 py-4 bg-transparent text-cyan-500 font-bold rounded-lg border-2 border-cyan-500 hover:bg-cyan-500/10 transition-all transform hover:-translate-y-1">
         Say Hello
       </a>
     </section>
