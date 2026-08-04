@@ -111,7 +111,7 @@ const dotRef = useRef(null);
       </div>
 
       {/* Navigation Bar */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#141414]/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
+      <nav className={`fixed w-full z-[99] transition-all duration-300 ${isScrolled ? 'bg-[#050505]/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
         <div className="max-w-[1400px] mx-auto w-[92%] flex justify-between items-center">
           <a href="#" className="text-3xl font-bold tracking-tighter">Dev<span className="text-cyan-500">.</span></a>
 
@@ -129,17 +129,31 @@ const dotRef = useRef(null);
 
           {/* Mobile Hamburger Button */}
           <button 
-            className="md:hidden text-gray-300 hover:text-cyan-400 focus:outline-none z-[60] relative transition-transform duration-300"
+            className="md:hidden text-gray-300 hover:text-cyan-400 focus:outline-none relative w-8 h-8 flex items-center justify-center"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle Mobile Menu"
           >
-            {isMobileMenuOpen ? (
-              // X (Close) Icon
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            ) : (
-              // Hamburger (Menu) Icon
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-            )}
+            {/* Hamburger Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`absolute transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'opacity-0 rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'}`}
+              width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            >
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+
+            {/* X (Close) Icon */}
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className={`absolute transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-50'}`}
+              width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+
           </button>
 
         </div>
