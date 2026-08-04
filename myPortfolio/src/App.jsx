@@ -9,6 +9,7 @@ function App() {
 const dotRef = useRef(null);
   const outlineRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Hook 1: Custom Cursor Logic
   useEffect(() => {
@@ -87,7 +88,8 @@ const dotRef = useRef(null);
         <div className="blob blob-2"></div>
         <div className="blob blob-3"></div>
       </div>
-      <div className="fixed bottom-0 left-8 z-50 hidden md:flex flex-col items-center gap-6">
+      
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 md:bottom-0 md:left-8 md:-translate-x-0 z-[45] flex md:flex-col items-center gap-6 bg-[#050505]/80 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none px-6 py-3 md:p-0 rounded-full md:rounded-none border border-white/10 md:border-none shadow-lg md:shadow-none">
   
         {/* GitHub */}
         <a href="https://github.com/ShashwathNayak06" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-all hover:-translate-y-1">
@@ -105,7 +107,7 @@ const dotRef = useRef(null);
         </a>
 
         {/* Vertical Line */}
-        <div className="w-[1px] h-24 bg-gray-500/50 mt-2"></div>
+        <div className="hidden md:block w-[1px] h-24 bg-gray-500/50 mt-2"></div>
       </div>
 
       {/* Navigation Bar */}
@@ -125,8 +127,35 @@ const dotRef = useRef(null);
             Hire Me
           </a>
 
+          {/* Mobile Hamburger Button */}
+          <button 
+            className="md:hidden text-gray-300 hover:text-cyan-400 focus:outline-none z-[60] relative transition-transform duration-300"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Mobile Menu"
+          >
+            {isMobileMenuOpen ? (
+              // X (Close) Icon
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            ) : (
+              // Hamburger (Menu) Icon
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            )}
+          </button>
+
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`fixed inset-0 bg-[#050505]/95 backdrop-blur-xl z-[55] flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
+        <div className="flex flex-col items-center space-y-8 text-2xl font-semibold">
+          <a href="#projects" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-cyan-400 transition-colors">Projects</a>
+          <a href="#skills" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-cyan-400 transition-colors">Skills</a>
+          <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-cyan-400 transition-colors">Contact</a>
+          <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 px-10 py-4 border border-cyan-500 text-cyan-400 rounded-full hover:bg-cyan-500 hover:text-[#050505] transition-all">
+            Hire Me
+          </a>
+        </div>
+      </div>
 
     
       <main className="max-w-[1400px] mx-auto w-[92%]">
